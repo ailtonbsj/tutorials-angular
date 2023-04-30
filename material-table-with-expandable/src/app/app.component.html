@@ -1,0 +1,45 @@
+<table mat-table multiTemplateDataRows [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Id Column -->
+    <ng-container  matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Function Column -->
+    <ng-container matColumnDef="function">
+        <th mat-header-cell *matHeaderCellDef>Function</th>
+        <td mat-cell *matCellDef="let element">{{ element.function }}</td>
+    </ng-container>
+
+    <!-- Expand Column -->
+    <ng-container matColumnDef="expand">
+        <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
+        <td mat-cell *matCellDef="let row">
+            <button mat-icon-button (click)="(expandedRow = expandedRow === row ? null : row); $event.stopPropagation()">
+                <mat-icon *ngIf="expandedRow !== row">keyboard_arrow_down</mat-icon>
+                <mat-icon *ngIf="expandedRow === row">keyboard_arrow_up</mat-icon>
+              </button>
+        </td>
+    </ng-container>
+
+    <!-- ExpandedDetail Column -->
+    <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let row" [attr.colspan]="displayColumns.length">
+            <div class="box-detail" [@detailExpand]="row == expandedRow ? 'expanded' : 'collapsed'">
+                <div class="detail-data">{{ row.comment }}</div>
+            </div>
+        </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumns;" class="register-row"
+        [class.expanded-row]="expandedRow === row"
+        (click)="expandedRow = expandedRow === row ? null : row"></tr>
+    <tr mat-row *matRowDef="let line; columns: ['expandedDetail']" class="detail-row"></tr>
+</table>

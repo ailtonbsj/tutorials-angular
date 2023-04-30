@@ -1,0 +1,24 @@
+tr.detail-row {
+  height: 0;
+}
+
+tr.register-row:not(.expanded-row):hover {
+  background: #505050;
+}
+
+tr.register-row:not(.expanded-row):active {
+  background: #3a3a3a;
+}
+
+.register-row td {
+  border-bottom-width: 0;
+}
+
+.box-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.detail-data {
+  padding: 15px 0;
+}
