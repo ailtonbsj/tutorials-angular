@@ -8,6 +8,7 @@ This is the source code of all tutorials I did using Angular. This tutorials are
 
 | Tutorial                             | Author  | Folder                                                     | Status                                                       |
 |--------------------------------------|---------|------------------------------------------------------------|--------------------------------------------------------------|
+|[Angular Universal SSR](https://angular.io/guide/universal)|ailtonbsj|[angular-universal](angular-universal)|![](https://img.shields.io/badge/status-completed-brightgreen)|
 |[PrimeNG DataView](https://primeng.org/dataview)|ailtonbsj|[primeng-dataview](primeng-dataview)|![](https://img.shields.io/badge/status-completed-brightgreen)|
 |[PrimeNG PickList](https://primeng.org/picklist)|ailtonbsj|[primeng-picklist](primeng-picklist)|![](https://img.shields.io/badge/status-completed-brightgreen)|
 |[Angular Material Timepicker](https://tonysamperi.github.io/ngx-mat-timepicker/)|ailtonbsj|[ngx-mat-timepicker-sample](ngx-mat-timepicker-sample)|![](https://img.shields.io/badge/status-completed-brightgreen)|
