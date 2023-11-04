@@ -8,6 +8,12 @@ import { CrudComponent } from './components/crud/crud.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import localePt from '@angular/common/locales/pt';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localePt, 'pt');
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +26,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ConfirmationService, MessageService],
+  providers: [
+    ConfirmationService,
+    MessageService,
+    {
+      provide: LOCALE_ID,
+      useValue: "pt"
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

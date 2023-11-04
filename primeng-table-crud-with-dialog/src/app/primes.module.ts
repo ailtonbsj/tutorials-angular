@@ -13,6 +13,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [],
@@ -31,7 +32,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     DropdownModule,
     RadioButtonModule,
     InputTextareaModule,
-    InputNumberModule
+    InputNumberModule,
+    ToastModule
   ]
 })
 export class PrimesModule { }

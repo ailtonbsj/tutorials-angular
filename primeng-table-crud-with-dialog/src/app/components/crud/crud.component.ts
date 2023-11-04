@@ -12,7 +12,7 @@ export class CrudComponent {
 
   products: Product[] = [];
   selectedProducts: Product[] = [];
-  product: Product = {};
+  product: Product = <Product>{};
   submitted: boolean = false;
   productDialog: boolean = false;
   statuses: any = [];
@@ -22,25 +22,25 @@ export class CrudComponent {
 
   ngOnInit() {
     this.statuses = [
-      { label: 'Disponível', value: 'INSTOCK' },
-      { label: 'Estoque Baixo', value: 'LOWSTOCK' },
-      { label: 'Indisponível', value: 'OUTOFSTOCK' }
+      { label: 'Disponível', value: 'DISPONIVEL' },
+      { label: 'Indisponível', value: 'INDISPONIVEL' }
     ];
-
-    this.productService.index().subscribe({
-      next: products => this.products = products
-    });
+    this.listProducts();
   }
 
   getSeverity(inventoryStatus: string): string {
     switch (inventoryStatus) {
-      case 'INSTOCK':
+      case 'DISPONIVEL':
         return 'success';
-      case 'LOWSTOCK':
-        return 'warning';
       default:
         return 'danger';
     }
+  }
+
+  listProducts() {
+    this.productService.index().subscribe({
+      next: products => this.products = products
+    });
   }
 
   deleteProduct(product: Product) {
@@ -49,9 +49,13 @@ export class CrudComponent {
       header: 'Alerta',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.products = this.products.filter(val => val.id !== product.id);
-        this.product = {};
-        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Produto removido', life: 3000 });
+        this.productService.destroy(product.id).subscribe({
+          next: () => {
+            this.product = <Product>{};
+            this.listProducts();
+            this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Produto removido', life: 3000 });
+          }
+        });
       },
       acceptLabel: 'Sim',
       rejectLabel: 'Não'
@@ -64,9 +68,13 @@ export class CrudComponent {
       header: 'Alerta',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.products = this.products.filter((val) => !this.selectedProducts?.includes(val));
-        this.selectedProducts = [];
-        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Produto removidos', life: 3000 });
+        this.productService.destroyBulk(this.selectedProducts.map(p => p.id)).subscribe({
+          next: () => {
+            this.selectedProducts = [];
+            this.listProducts();
+            this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Produto removidos', life: 3000 });
+          }
+        });
       },
       acceptLabel: 'Sim',
       rejectLabel: 'Não'
@@ -74,9 +82,9 @@ export class CrudComponent {
   }
 
   openNew() {
-    this.product = {};
+    this.product = <Product>{};
     this.submitted = false;
-    this.inventoryStatus = 'INSTOCK';
+    this.inventoryStatus = 'DISPONIVEL';
     this.productDialog = true;
   }
 
@@ -97,37 +105,23 @@ export class CrudComponent {
     if (this.product.name?.trim()) {
       this.product.inventoryStatus = this.inventoryStatus;
       if (this.product.id) {
-        this.products[this.findIndexById(this.product.id)] = this.product;
-        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Produto atualizado', life: 3000 });
+        this.productService.update(this.product).subscribe({
+          next: id => {
+            this.product = <Product>{};
+            this.listProducts();
+            this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Produto atualizado', life: 3000 });
+          }
+        });
       } else {
-        this.product.id = this.createId();
-        this.product.image = 'product-placeholder.svg';
-        this.products.push(this.product);
-        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Produto criado', life: 3000 });
+        this.productService.store(this.product).subscribe({
+          next: id => {
+            this.product = <Product>{};
+            this.listProducts();
+            this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Produto criado', life: 3000 });
+          }
+        });
       }
-      this.products = [...this.products];
       this.productDialog = false;
-      this.product = {};
     }
-  }
-
-  findIndexById(id: string): number {
-    let index = -1;
-    for (let i = 0; i < this.products.length; i++) {
-      if (this.products[i].id === id) {
-        index = i;
-        break;
-      }
-    }
-    return index;
-  }
-
-  createId(): string {
-    let id = '';
-    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (var i = 0; i < 5; i++) {
-      id += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return id;
   }
 }
