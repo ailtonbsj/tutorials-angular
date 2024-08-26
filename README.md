@@ -8,6 +8,7 @@ This is the source code of all tutorials I did using Angular. This tutorials are
 
 | Tutorial                             | Author  | Folder                                                     | Status                                                       |
 |--------------------------------------|---------|------------------------------------------------------------|--------------------------------------------------------------|
+|[Ngx Mask on CPF and CNPJ](https://youtu.be/L145sRWlBQc)|Vida Fullstack|[ngx-mask-cpf-cnpj](ngx-mask-cpf-cnpj)|![](https://img.shields.io/badge/status-completed-brightgreen)|
 |[PrimeNG Table CRUD Products](https://primeng.org/table)|Documentation|[primeng-table-crud-with-dialog](primeng-table-crud-with-dialog)|![](https://img.shields.io/badge/status-completed-brightgreen)|
 |[Angular Universal SSR](https://angular.io/guide/universal)|ailtonbsj|[angular-universal](angular-universal)|![](https://img.shields.io/badge/status-completed-brightgreen)|
 |[PrimeNG DataView](https://primeng.org/dataview)|ailtonbsj|[primeng-dataview](primeng-dataview)|![](https://img.shields.io/badge/status-completed-brightgreen)|

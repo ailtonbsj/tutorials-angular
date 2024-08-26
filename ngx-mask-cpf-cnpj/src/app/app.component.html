@@ -1,0 +1,41 @@
+<h1>Using Ngx-mask directive and pipe</h1>
+
+<div>
+  <input #telephone type="tel" mask="(00) 0 0000-0000" placeholder="Telefone" />
+</div>
+<div>
+  <input type="text" mask="IP" placeholder="Address IP" />
+</div>
+<div>
+  <input type="text" mask="CPF_CNPJ" placeholder="CPF or CNPJ" />
+</div>
+<div>
+  {{ telephone.value }}
+</div>
+<div>
+  {{ cellphone() | mask: "(00) 0 0000-0000" }}
+</div>
+<div>
+  {{ "26/08/2024" | mask: "d0/M0/0000" }}
+</div>
+
+<h1>Using Reactive Forms with Ngx-mask</h1>
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <p>
+    <label for="cpf">CPF </label>
+    <input type="text" name="cpf" id="cpf" formControlName="cpf" mask="000.000.000-00" />
+  </p>
+  <p>
+    <label for="cnpj">CNPJ </label>
+    <input type="text" name="cnpj" id="cnpj" formControlName="cnpj" mask="00.000.000/0000-00" />
+  </p>
+  <p>
+    <label for="cpfCnpj">CPF/CNPJ </label>
+    <input type="text" name="cpfCnpj" id="cpfCnpj" formControlName="cpfCnpj" mask="CPF_CNPJ" />
+  </p>
+  <button type="submit">Show Model</button>
+  <p>Ouput:</p>
+  <code>{{ output | json }}</code>
+</form>
+
