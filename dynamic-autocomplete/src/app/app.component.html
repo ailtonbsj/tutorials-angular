@@ -1,0 +1,13 @@
+<div style="padding: 25px;">
+  <form [formGroup]="form">
+    <mat-form-field>
+      <mat-label>School</mat-label>
+      <input type="text" placeholder="Type and select" matInput formControlName="school" [matAutocomplete]="auto" (keyup)="onKeyUp($event)">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="schoolDisplay()">
+        @for (school of schools$ | async; track school) {
+        <mat-option [value]="school">{{ school.name }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>
