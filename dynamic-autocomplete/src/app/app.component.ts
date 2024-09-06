@@ -11,6 +11,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class AppComponent implements OnInit {
   schools$: Observable<School[]> = EMPTY;
   form: FormGroup = <FormGroup>{};
+  output = '';
+  schoolSample: School = <School>{ "code": "SCH031", "name": "Sample School" };
 
   constructor(
     private schoolService: SchoolService,
@@ -32,5 +34,17 @@ export class AppComponent implements OnInit {
 
   schoolDisplay() {
     return (data: School) => data.name
+  }
+
+  getValue(){
+    this.output = this.form.get('school')?.value;
+  }
+
+  setValue(){
+    this.form.get('school')?.setValue(this.schoolSample);
+  }
+
+  clearValue(){
+    this.form.get('school')?.setValue('');
   }
 }

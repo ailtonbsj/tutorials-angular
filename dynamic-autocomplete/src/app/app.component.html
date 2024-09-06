@@ -1,6 +1,6 @@
 <div style="padding: 25px;">
   <form [formGroup]="form">
-    <mat-form-field>
+    <mat-form-field class="w-full">
       <mat-label>School</mat-label>
       <input type="text" placeholder="Type and select" matInput formControlName="school" [matAutocomplete]="auto" (keyup)="onKeyUp($event)">
       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="schoolDisplay()">
@@ -10,4 +10,8 @@
       </mat-autocomplete>
     </mat-form-field>
   </form>
+  <button mat-flat-button class="mr-2" (click)="getValue()">Get value</button>
+  <button mat-flat-button class="mr-2" (click)="setValue()">Set value</button>
+  <button mat-flat-button class="mr-2" (click)="clearValue()">Clear value</button>
+  <div class="code">{{ output | json }}</div>
 </div>
