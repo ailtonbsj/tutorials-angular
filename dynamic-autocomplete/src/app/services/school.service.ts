@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import '../models/School';
+import '../models/school.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SchoolService {
 
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
 
   listSchools(): Observable<School[]> {
     return this.http.get<School[]>('/schools.json');
@@ -23,4 +23,5 @@ export class SchoolService {
   listSchoolByNameLimited(val: string, limit: number) {
     return this.listSchoolByName(val).pipe(map(list => list.slice(0,5)))
   }
+
 }

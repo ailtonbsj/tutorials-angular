@@ -10,3 +10,13 @@
   padding: 10px;
   font-family: 'Courier New', Courier, monospace;
 }
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
