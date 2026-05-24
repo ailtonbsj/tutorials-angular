@@ -1,0 +1,63 @@
+<div class="container">
+  <h1>Datepickers em português</h1>
+
+  <form [formGroup]="form" (submit)="getting()">
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Angular datepicker</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date1">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Angular datepicker</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="date2">
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>HTML datepicker</mat-label>
+        <input matInput type="date" formControlName="date3">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>HTML datepicker</mat-label>
+        <input matInput type="date" formControlName="date4">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>HTML datetimepicker</mat-label>
+        <input matInput type="datetime-local" formControlName="date5">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>HTML monthpicker</mat-label>
+        <input matInput type="month" formControlName="date6">
+      </mat-form-field>
+    </div>
+
+    <code>
+      {{ form.value | json }}
+    </code>
+
+    <div class="buttons">
+      <button type="submit" matButton="filled">Enviar</button>
+      <button type="reset" matButton="filled">Reset</button>
+      <button type="button" matButton="filled" (click)="setting()">Setar</button>
+    </div>
+
+  </form>
+</div>

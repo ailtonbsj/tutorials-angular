@@ -1,0 +1,30 @@
+.container {
+  margin: 20px
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+mat-form-field {
+  width: 250px;
+}
+
+button {
+  padding: 10px;
+  margin-right: 10px;
+}
+
+input[type="datetime-local"]::-webkit-inner-spin-button,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+input[type="datetime"]::-webkit-inner-spin-button,
+input[type="datetime"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="month"]::-webkit-inner-spin-button,
+input[type="month"]::-webkit-calendar-picker-indicator {
+  display: block;
+  -webkit-appearance: button;
+}
